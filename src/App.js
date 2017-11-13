@@ -18,10 +18,10 @@ class App extends Component {
           </div>
 
           <h3>Categories</h3>
-          <LinkCategory />
-          <LinkCategory />
-          <LinkCategory />
-          <LinkCategory />
+          <LinkCategory category={{ name: 'Bike', icon: 'fa-lightbulb-o'}} />
+          <LinkCategory category={{ name: 'Bike', icon: 'fa-lightbulb-o'}} />
+          <LinkCategory category={{ name: 'Bike', icon: 'fa-lightbulb-o'}} />
+          <LinkCategory category={{ name: 'Bike', icon: 'fa-lightbulb-o'}} />
         </div>
         <Footer />
       </div>
