@@ -22,6 +22,7 @@ class App extends Component {
   }
 
   render() {
+    let index = 0
     return (
       <div className="App">
         <HeaderHome />
@@ -35,8 +36,11 @@ class App extends Component {
 
           <h3>Categories</h3>
           <div class="row">
-            { this.state.categories.map(cat => {
-              return <LinkCategory category={cat} />
+            { this.state.categories.map((cat, _index) => {
+              return [
+                <LinkCategory category={cat} key={_index} />,
+                ++index%4 === 0 && <div key={`c` + _index} className="w-100"></div>
+              ]
             }) }
           </div>
         </div>
