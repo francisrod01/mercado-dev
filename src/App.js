@@ -1,10 +1,26 @@
 import React, { Component } from 'react'
+
 import HeaderHome from './HeaderHome'
 import AdvertHome from './AdvertHome'
 import Footer from './Footer'
 import LinkCategory from './LinkCategory'
 
+import base from './base'
+
+
 class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      categories: []
+    }
+    base.bindToState('categories', {
+      context: this,
+      state: 'categories'
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -19,10 +35,9 @@ class App extends Component {
 
           <h3>Categories</h3>
           <div class="row">
-            <LinkCategory category={{ name: 'Bike', icon: 'fa-lightbulb-o'}} />
-            <LinkCategory category={{ name: 'Bike', icon: 'fa-lightbulb-o'}} />
-            <LinkCategory category={{ name: 'Bike', icon: 'fa-lightbulb-o'}} />
-            <LinkCategory category={{ name: 'Bike', icon: 'fa-lightbulb-o'}} />
+            { this.state.categories.map(cat => {
+              return <LinkCategory category={cat} />
+            }) }
           </div>
         </div>
         <Footer />
