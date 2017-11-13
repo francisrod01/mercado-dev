@@ -7,7 +7,13 @@ class App extends Component {
     return (
       <div className="App">
         <HeaderHome />
-        <AdvertHome />
+        <div className="container">
+          <div class="row">
+            <AdvertHome />
+            <AdvertHome />
+            <AdvertHome />
+          </div>
+        </div>
       </div>
     )
   }
