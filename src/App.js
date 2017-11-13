@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import HeaderHome from './HeaderHome'
 import AdvertHome from './AdvertHome'
+import Footer from './Footer'
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
             <AdvertHome />
           </div>
         </div>
+        <Footer />
       </div>
     )
   }
