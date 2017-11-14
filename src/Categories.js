@@ -1,7 +1,8 @@
 import React from 'react'
+import {Link, Route} from 'react-router-dom'
 
 import HeaderInternal from './HeaderInternal'
-import {Link} from 'react-router-dom'
+import Category from './Category'
 
 const Categories = (props) => {
     return (
@@ -24,7 +25,7 @@ const Categories = (props) => {
                         </ul>
                     </div>
                     <div className='col-lg-8'>
-                        content
+                        <Route path='/categories/:urlCategory' component={Category} />
                     </div>
                 </div>
             </div>
