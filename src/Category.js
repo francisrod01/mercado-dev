@@ -42,7 +42,9 @@ class Category extends Component {
                     Category:
                     {JSON.stringify(this.props.match.params.urlCategory)}
                 </h1>
-
+                {
+                    Object.keys(this.state.adverts).length === 0 && <p>Nothing registered.</p>
+                }
                 <div className='row'>
                     {
                         Object.keys(adverts).map(_key => {
