@@ -13,15 +13,23 @@ class Category extends Component {
 
         this.loadAdverts()
     }
-    loadAdverts() {
+    loadAdverts(urlCategory) {
         // Load data.
-        const urlCategory = props.match.params.urlCategory
         const url = `https://devpleno-first-app.firebaseio.com/adverts.json?orderBy=%22category%22&equalTo=%22${urlCategory}%22`
         axios
             .get(url)
             .then(data => {
                 this.setState({adverts: data.data})
+                this.category = urlCategory
             })
+    }
+    componentWillReceiveProps(newProps) {
+        const urlCategory = newProps.match.params.urlCategory
+        if (urlCategory) {
+            if (this.category !== urlCategory) {
+                this.loadAdverts(urlCategory)
+            }
+        }
     }
     render() {
         return (
