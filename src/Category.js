@@ -11,7 +11,8 @@ class Category extends Component {
         }
 
         // Load data.
-        const url = 'https://devpleno-first-app.firebaseio.com/adverts.json?orderBy=%22category%22&equalTo=%22empregos-e-negocios%22'
+        const urlCategory = props.match.params.urlCategory
+        const url = `https://devpleno-first-app.firebaseio.com/adverts.json?orderBy=%22category%22&equalTo=%22${urlCategory}%22`
         axios
             .get(url)
             .then(data => {
