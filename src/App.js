@@ -24,7 +24,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Route path='/' exact render={() => <Home categories={this.state.categories} />} />
-          <Route path='/new-advert' exact component={NewAdvert} />
+          <Route path='/new-advert' exact render={() => <NewAdvert categories={this.state.categories} />} />
           <Footer />
         </div>
       </Router>

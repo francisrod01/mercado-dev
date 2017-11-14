@@ -57,6 +57,15 @@ class NewAdvert extends Component {
                         </div>
 
                         <div className='form-group'>
+                            <label htmlFor='categories'>Categories</label>
+                            <select ref={(ref) => this.categories = ref}>
+                                {
+                                    this.props.categories.map(cat => <option value={cat.url}>{cat.category}</option>)
+                                }
+                            </select>
+                        </div>
+
+                        <div className='form-group'>
                             <label htmlFor='description'>Description</label>
                             <textarea type='text' className='form-control' id='description' placeholder='Description' ref={(ref) => this.description = ref} />
                         </div>
