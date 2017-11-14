@@ -33,14 +33,15 @@ class Home extends Component {
                 <HeaderHome />
                 <div className="container">
                     <h3>Last Adverts</h3>
-                    <div class="row">
-                        { this.state.adverts.map((advert, _index) => {
+                    <div className="row">
+                        { Object.keys(this.state.adverts).map(_index => {
+                            const advert = this.state.adverts[_index]
                             return <AdvertHome key={_index} advert={advert} />
                         })}
                     </div>
         
                     <h3>Categories</h3>
-                    <div class="row">
+                    <div className="row">
                         { this.state.categories.map((cat, _index) => {
                             return [
                             <LinkCategory category={cat} key={_index} />,
