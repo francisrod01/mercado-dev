@@ -6,7 +6,8 @@ class Advert extends Component {
         super(props)
 
         this.state = {
-            advert: {}
+            advert: {},
+            isLoading: true
         }
 
         const id = this.props.match.params.idAdvert
@@ -14,11 +15,16 @@ class Advert extends Component {
         axios
             .get(url)
             .then(data => {
-                this.setState({advert: data.data})
+                this.setState({advert: data.data, isLoading: false})
             })
     }
     render() {
         const advert = this.state.advert
+
+        if (this.state.isLoading) {
+            return <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+        }
+
         return (
             <div>
                 <h1>{advert.name}</h1>
