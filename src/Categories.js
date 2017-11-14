@@ -3,6 +3,7 @@ import {Link, Route} from 'react-router-dom'
 
 import HeaderInternal from './HeaderInternal'
 import Category from './Category'
+import Advert from './Advert'
 
 const Categories = (props) => {
     return (
@@ -26,7 +27,7 @@ const Categories = (props) => {
                     </div>
                     <div className='col-lg-8'>
                         <Route path='/categories/:urlCategory' exact component={Category} />
-                        <Route path='/categories/:urlCategory/:idAdvert' render={() => <h1>Advert test</h1>} />
+                        <Route path='/categories/:urlCategory/:idAdvert' render={(props) => <Advert {...props} />} />
                     </div>
                 </div>
             </div>
