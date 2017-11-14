@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 
+import AdvertHome from './AdvertHome'
+
 
 class Category extends Component {
     constructor(props) {
@@ -32,12 +34,22 @@ class Category extends Component {
         }
     }
     render() {
+        const adverts = this.state.adverts
+
         return (
             <div>
                 <h1>
                     Category:
                     {JSON.stringify(this.props.match.params.urlCategory)}
                 </h1>
+
+                {
+                    Object.keys(adverts).map(_key => {
+                        const _advert = this.state.adverts[_key]
+                        return <AdvertHome advert={_advert} />
+                    })
+                }
+
                 <p>{JSON.stringify(this.state.adverts)}</p>
             </div>
         )
