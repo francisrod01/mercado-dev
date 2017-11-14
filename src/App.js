@@ -8,6 +8,17 @@ import base from './base'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      categories: []
+    }
+    base.bindToState('categories', {
+      context: this,
+      state: 'categories'
+    })
+  }
   render() {
     return (
       <Router>

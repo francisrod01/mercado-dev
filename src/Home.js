@@ -14,10 +14,6 @@ class Home extends Component {
           categories: [],
           adverts: [],
         }
-        base.bindToState('categories', {
-          context: this,
-          state: 'categories'
-        })
         base.bindToState('adverts', {
           context: this,
           state: 'adverts',
