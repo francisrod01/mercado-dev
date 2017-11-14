@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
+import HeaderInternal from './HeaderInternal'
 
 class NewAdvert extends Component {
     render() {
         return (
             <div>
+                <HeaderInternal />
                 <div className='container' style={{paddingTop: '120px'}}>
                     <h1>New Advert</h1>
                     <form onSubmit={null}>
