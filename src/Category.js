@@ -43,14 +43,14 @@ class Category extends Component {
                     {JSON.stringify(this.props.match.params.urlCategory)}
                 </h1>
 
-                {
-                    Object.keys(adverts).map(_key => {
-                        const _advert = this.state.adverts[_key]
-                        return <AdvertHome key={_key} advert={_advert} />
-                    })
-                }
-
-                <p>{JSON.stringify(this.state.adverts)}</p>
+                <div className='row'>
+                    {
+                        Object.keys(adverts).map(_key => {
+                            const _advert = this.state.adverts[_key]
+                            return <AdvertHome key={_key} id={_key} advert={_advert} />
+                        })
+                    }
+                </div>
             </div>
         )
     }
