@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from './logo.png'
+import {Link} from 'react-router-dom'
 
 // Functional stateless component.
 const HeaderHome = (props) => {
@@ -10,7 +11,7 @@ const HeaderHome = (props) => {
                     <img src={logo} className="App-logo" alt="logo" width="200" />
                 </h1>
                 <p className="text-center">
-                    <a className="btn btn-anuncie btn-lg" to="/new-post" role="button">Advertise for free &raquo;</a>
+                    <Link className="btn btn-anuncie btn-lg" to="/new-advert" role="button">Advertise for free &raquo;</Link>
                 </p>
             </div>
         </div>
