@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route path='/' exact component={Home} />
+          <Route path='/' exact render={() => <Home categories={this.state.categories} />} />
           <Route path='/new-advert' exact component={NewAdvert} />
           <Footer />
         </div>

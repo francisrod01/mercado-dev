@@ -11,7 +11,6 @@ class Home extends Component {
         super(props)
     
         this.state = {
-          categories: [],
           adverts: [],
         }
         base.bindToState('adverts', {
@@ -38,7 +37,7 @@ class Home extends Component {
         
                     <h3>Categories</h3>
                     <div className="row">
-                        { this.state.categories.map((cat, _index) => {
+                        { this.props.categories.map((cat, _index) => {
                             return [
                             <LinkCategory category={cat} key={_index} />,
                             ++index%4 === 0 && <div key={`c` + _index} className="w-100"></div>
