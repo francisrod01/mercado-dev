@@ -46,7 +46,7 @@ class Category extends Component {
                 {
                     Object.keys(adverts).map(_key => {
                         const _advert = this.state.adverts[_key]
-                        return <AdvertHome advert={_advert} />
+                        return <AdvertHome key={_key} advert={_advert} />
                     })
                 }
 
