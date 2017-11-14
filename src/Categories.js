@@ -25,7 +25,8 @@ const Categories = (props) => {
                         </ul>
                     </div>
                     <div className='col-lg-8'>
-                        <Route path='/categories/:urlCategory' component={Category} />
+                        <Route path='/categories/:urlCategory' exact component={Category} />
+                        <Route path='/categories/:urlCategory/:idAdvert' render={() => <h1>Advert test</h1>} />
                     </div>
                 </div>
             </div>
