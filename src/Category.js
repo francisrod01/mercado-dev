@@ -1,12 +1,34 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 
-const Category = (props) => {
-    return (
-        <h1>
-            Category:
-            {JSON.stringify(props.match.params.urlCategory)}
-        </h1>
-    )
+
+class Category extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            adverts: []
+        }
+
+        // Load data.
+        const url = 'https://devpleno-first-app.firebaseio.com/adverts.json?orderBy=%22category%22&equalTo=%22empregos-e-negocios%22'
+        axios
+            .get(url)
+            .then(data => {
+                this.setState({adverts: data.data})
+            })
+    }
+    render() {
+        return (
+            <div>
+                <h1>
+                    Category:
+                    {JSON.stringify(this.props.match.params.urlCategory)}
+                </h1>
+                <p>{JSON.stringify(this.state.adverts)}</p>
+            </div>
+        )
+    }
 }
 
 export default Category
