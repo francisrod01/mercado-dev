@@ -1,5 +1,7 @@
 # mercado-dev
 
+![](src/logo2.png)
+
 Building a ReactJS application based on MercadoLivre by [Tulio Faria](https://github.com/tuliofaria)
 
 Author: [Francis Rodrigues](https://github.com/francisrod01)
