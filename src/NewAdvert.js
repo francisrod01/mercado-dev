@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import HeaderInternal from './HeaderInternal'
 
-import base from './base'
+import base, {storage} from './base'
 
 class NewAdvert extends Component {
     constructor(props) {
@@ -10,25 +10,33 @@ class NewAdvert extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
     handleSubmit(e) {
-        const newAdvert = {
-            name: this.name.value,
-            description: this.description.value,
-            price: this.price.value,
-            seller: this.seller.value,
-            photo: 'http://placehold.it/200x140',
-            phone: this.phone.value
-        }
-        base.push('adverts', {
-            data: newAdvert
-        }, (err) => {
-            if (err) {
+        const file = this.photo.files[0]
+        const {name, size} = file
+        const ref = storage.ref(name)
+        ref
+            .put(file)
+            .then(img => {
+                console.log(img)
                 
-            } else {
-                //
-            }
-        })
+                const newAdvert = {
+                    name: this.name.value,
+                    description: this.description.value,
+                    price: this.price.value,
+                    seller: this.seller.value,
+                    photo: img.metadata.downloadURLs[0],
+                    phone: this.phone.value
+                }
+                base.push('adverts', {
+                    data: newAdvert
+                }, (err) => {
+                    if (err) {
+                        
+                    } else {
+                        //
+                    }
+                })
+            })
 
-        console.log(newAdvert)
         e.preventDefault()
     }
     render() {
@@ -38,6 +46,11 @@ class NewAdvert extends Component {
                 <div className='container' style={{paddingTop: '120px'}}>
                     <h1>New Advert</h1>
                     <form onSubmit={this.handleSubmit}>
+                        <div className='form-group'>
+                            <label htmlFor='photo'>Photo</label>
+                            <input type='file' className='form-control' id='photo' placeholder='Photo' ref={(ref) => this.photo = ref} />
+                        </div>
+
                         <div className='form-group'>
                             <label htmlFor='name'>Name</label>
                             <input type='text' className='form-control' id='name' placeholder='Name' ref={(ref) => this.name = ref} />
