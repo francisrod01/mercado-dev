@@ -9,19 +9,25 @@ class Category extends Component {
         super(props)
 
         this.state = {
-            adverts: []
+            adverts: {},
+            isLoading: false
         }
         this.loadAdverts = this.loadAdverts.bind(this)
 
         this.loadAdverts()
     }
     loadAdverts(urlCategory) {
+        this.setState({
+            isLoading: true,
+            adverts: {}
+        })
+
         // Load data.
         const url = `https://devpleno-first-app.firebaseio.com/adverts.json?orderBy=%22category%22&equalTo=%22${urlCategory}%22`
         axios
             .get(url)
             .then(data => {
-                this.setState({adverts: data.data})
+                this.setState({adverts: data.data, isLoading: false})
                 this.category = urlCategory
             })
     }
@@ -43,7 +49,10 @@ class Category extends Component {
                     {JSON.stringify(this.props.match.params.urlCategory)}
                 </h1>
                 {
-                    Object.keys(this.state.adverts).length === 0 && <p>Nothing registered.</p>
+                    this.state.isLoading && <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                }
+                {
+                    !this.state.isLoading && Object.keys(this.state.adverts).length === 0 && <p>Nothing registered.</p>
                 }
                 <div className='row'>
                     {
