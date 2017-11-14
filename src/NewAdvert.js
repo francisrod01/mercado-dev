@@ -1,12 +1,16 @@
 import React, {Component} from 'react'
 import HeaderInternal from './HeaderInternal'
 
+import {Redirect} from 'react-router-dom'
 import base, {storage} from './base'
 
 class NewAdvert extends Component {
     constructor(props) {
         super(props)
 
+        this.state = {
+            success: false
+        }
         this.handleSubmit = this.handleSubmit.bind(this)
     }
     handleSubmit(e) {
@@ -16,30 +20,31 @@ class NewAdvert extends Component {
         ref
             .put(file)
             .then(img => {
-                console.log(img)
-                
                 const newAdvert = {
                     name: this.name.value,
                     description: this.description.value,
                     price: this.price.value,
                     seller: this.seller.value,
                     photo: img.metadata.downloadURLs[0],
-                    phone: this.phone.value
+                    phone: this.phone.value,
+                    category: this.category.value
                 }
-                base.push('adverts', {
-                    data: newAdvert
-                }, (err) => {
-                    if (err) {
-                        
-                    } else {
-                        //
-                    }
-                })
+                base
+                    .push('adverts', {
+                        data: newAdvert
+                    })
+                    .then(() => {
+                        this.setState({success: true})
+                    })
+                    .catch(e => console.log(e))
             })
 
         e.preventDefault()
     }
     render() {
+        if (this.state.success) {
+            return <Redirect to='/' />
+        }
         return (
             <div>
                 <HeaderInternal />
@@ -58,9 +63,9 @@ class NewAdvert extends Component {
 
                         <div className='form-group'>
                             <label htmlFor='categories'>Categories</label>
-                            <select ref={(ref) => this.categories = ref}>
+                            <select ref={(ref) => this.category = ref}>
                                 {
-                                    this.props.categories.map(cat => <option value={cat.url}>{cat.category}</option>)
+                                    this.props.categories.map(cat => <option key={cat.url} value={cat.url}>{cat.category}</option>)
                                 }
                             </select>
                         </div>
